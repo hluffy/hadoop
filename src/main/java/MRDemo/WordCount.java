@@ -64,6 +64,8 @@ public class WordCount {
 				//输出中间结果<hello,1> <world,1> <hello,1> <hadoop,1>
 				context.write(new Text(info), new IntWritable(1));
 			}
+			//不确定形式
+//			context.write(new Text(lines[0]), new IntWritable(1));
 		}
 		
 	}
