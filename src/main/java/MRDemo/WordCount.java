@@ -15,8 +15,9 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
 public class WordCount {
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-		if(args.length!=0){
+		if(args.length!=2){
 			System.out.println("Plase input full path!");
 			System.exit(0);
 		}
@@ -64,8 +65,6 @@ public class WordCount {
 				//输出中间结果<hello,1> <world,1> <hello,1> <hadoop,1>
 				context.write(new Text(info), new IntWritable(1));
 			}
-			//不确定形式
-//			context.write(new Text(lines[0]), new IntWritable(1));
 		}
 		
 	}
