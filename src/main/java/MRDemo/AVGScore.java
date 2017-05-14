@@ -16,6 +16,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class AVGScore {
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		if(args.length!=2){
 			System.out.println("please input full path");
@@ -48,7 +49,6 @@ public class AVGScore {
 				Mapper<LongWritable, Text, Text, DoubleWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.map(key, value, context);
 			String[] lines = value.toString().split("\t");
 			name.set(new Text(lines[0].trim()));
 			score = new DoubleWritable(Double.parseDouble(lines[1].trim()));
@@ -63,7 +63,6 @@ public class AVGScore {
 				Reducer<Text, DoubleWritable, Text, DoubleWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.reduce(key, values, context);
 			double sum = 0;
 			int count = 0;
 			for(DoubleWritable num: values){

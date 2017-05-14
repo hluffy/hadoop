@@ -44,7 +44,6 @@ public class PVDemo {
 				Mapper<LongWritable, Text, Text, IntWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.map(key, value, context);
 			String[] lines = value.toString().split(" ");
 			ip.set(lines[0].trim());
 			context.write(ip, one);
@@ -59,7 +58,6 @@ public class PVDemo {
 				Reducer<Text, IntWritable, Text, IntWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.reduce(key, values, context);
 			int sum = 0;
 			for (IntWritable value : values) {
 				sum = sum + value.get();
@@ -72,7 +70,6 @@ public class PVDemo {
 				Reducer<Text, IntWritable, Text, IntWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.cleanup(context);
 			int sum = 0;
 			for(String key:map.keySet()){
 				sum = sum + map.get(key);

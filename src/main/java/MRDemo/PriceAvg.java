@@ -42,7 +42,6 @@ public class PriceAvg {
 				Mapper<LongWritable, Text, Text, DoubleWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.map(key, value, context);
 			String[] lines = value.toString().split("\t");
 			if(lines.length==6){
 				if(lines[4].trim().equals("山西")){
@@ -59,7 +58,6 @@ public class PriceAvg {
 				Reducer<Text, DoubleWritable, Text, DoubleWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.reduce(key, values, context);
 			double max = 0d;//最大值
 			double min = Double.MAX_VALUE;//最小值
 			double sum = 0;//价格总和

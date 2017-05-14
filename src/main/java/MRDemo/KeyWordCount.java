@@ -47,7 +47,6 @@ public class KeyWordCount {
 				Mapper<LongWritable, Text, Text, IntWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.map(key, value, context);
 			String[] lines = value.toString().split("\t");
 			if(lines.length==6){
 				context.write(new Text(lines[2].trim()), new IntWritable(1));
@@ -76,7 +75,6 @@ public class KeyWordCount {
 				Mapper<LongWritable, Text, IntWritable, Text>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.map(key, value, context);
 			String[] lines = value.toString().split("\t");
 			if(lines.length==2){
 				//从第一组MapReduce产生的最终结果中取出关键词和搜索次数

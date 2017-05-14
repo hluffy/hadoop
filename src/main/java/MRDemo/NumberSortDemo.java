@@ -47,7 +47,6 @@ public class NumberSortDemo {
 				Mapper<LongWritable, Text, NumberSort, NullWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.map(key, value, context);
 			String[] lines = value.toString().split("\t");
 			if(lines.length==2){
 				long first = Long.parseLong(lines[0]);
@@ -66,7 +65,6 @@ public class NumberSortDemo {
 				Reducer<NumberSort, NullWritable, NumberSort, NullWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.reduce(key, values, context);
 			context.write(key, NullWritable.get());
 		}
 	}

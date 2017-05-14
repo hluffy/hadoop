@@ -47,7 +47,6 @@ public class MarketCount {
 				Mapper<LongWritable, Text, Text, Text>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.map(key, value, context);
 			String[] lines = value.toString().split("\t");
 			if(lines.length==6){
 				province.set(lines[4].trim());
@@ -69,7 +68,6 @@ public class MarketCount {
 				Reducer<Text, Text, Text, IntWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.reduce(key, values, context);
 			Set<String> set = new HashSet<String>();
 			for(Text value:values){
 				//通过HashSet的去重功能对数据进行去重

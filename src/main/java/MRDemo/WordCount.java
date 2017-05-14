@@ -53,14 +53,13 @@ public class WordCount {
 	 * @author xhan
 	 *
 	 */
-	public static class WordCountMap extends Mapper<LongWritable, Text, Text, IntWritable>{
+	public static class WordCountMap extends Mapper<Object, Text, Text, IntWritable>{
 		@Override
-		protected void map(LongWritable key, Text value,
-				Mapper<LongWritable, Text, Text, IntWritable>.Context context)
+		protected void map(Object key, Text value,
+				Mapper<Object, Text, Text, IntWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.map(key, value, context);
-			String[] lines = value.toString().split(" ");
+			String[] lines = value.toString().split("\t");
 			for(String info:lines){
 				//输出中间结果<hello,1> <world,1> <hello,1> <hadoop,1>
 				context.write(new Text(info), new IntWritable(1));
@@ -85,7 +84,6 @@ public class WordCount {
 				Reducer<Text, IntWritable, Text, IntWritable>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.reduce(key, values, context);
 			int sum = 0;
 			for (IntWritable count : values) {
 				sum = sum + count.get();

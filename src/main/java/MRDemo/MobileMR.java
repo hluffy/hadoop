@@ -48,7 +48,6 @@ public class MobileMR {
 				Mapper<LongWritable, Text, Text, Mobile>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.map(key, value, context);
 			String[] lines = value.toString().split("\t");
 			if(lines.length==4){
 				phoneNum.set(lines[0].trim());//手机号
@@ -72,7 +71,6 @@ public class MobileMR {
 				Reducer<Text, Mobile, Text, Mobile>.Context context)
 				throws IOException, InterruptedException {
 			// TODO Auto-generated method stub
-			super.reduce(key, values, context);
 			int internet = 0;
 			int callTime = 0;
 			int mailCount = 0;
